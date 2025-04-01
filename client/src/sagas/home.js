@@ -10,6 +10,8 @@ function request() {
 
 function api() {
   return new Promise(function (resolve, reject) {
+    console.log("API_URL", API_URL);
+
     fetch(`${API_URL}/api/home`, {
       method: "POST",
       mode: "cors",
