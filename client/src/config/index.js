@@ -1,1 +1,1 @@
-export const API_URL = process.env.REACT_APP_API_URL || "http://localhost:1111";
+export const API_URL = "https://bunny-bet-uggx.vercel.app/";
