@@ -7,6 +7,15 @@ const app = express();
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
 
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+
+app.options("*", cors());
 var routes = require("./routes");
 app.use(routes);
 var stripePayment = require("./payments/stripePayment");
@@ -15,14 +24,6 @@ var paypalPayment = require("./payments/paypalPayment");
 app.use(paypalPayment);
 var cryptoPayment = require("./payments/cryptoPayment");
 app.use(cryptoPayment);
-
-// test cors remove later
-app.use(
-  cors({
-    origin: "*", // Allow all origins
-    methods: ["GET", "POST", "PUT", "DELETE"], // Allow specific HTTP methods
-  })
-);
 
 const path = require("path");
 const fs = require("fs");
